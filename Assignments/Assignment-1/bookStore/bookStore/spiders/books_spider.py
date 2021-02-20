@@ -13,7 +13,7 @@ class BooksSpider(scrapy.Spider):
     def parse(self, response):
         for article in response.css('section li article'):
             image_url = article.css('img.thumbnail::attr(src)').get()
-            title = article.css('h3 a::text').get()
+            title = article.css('h3 a::attr(title)').get()
             price = article.css('div.product_price p::text').get()
 
             yield {
